@@ -34,14 +34,15 @@ sentinel  = Hash.new
 sentinels = Array.new
 config = YAML.load(File.read('/etc/freeradius/3.0/config.otp.yaml')).transform_keys(&:to_sym)
 smtp = config[:smtp].transform_keys(&:to_sym)
+
 config[:sentinels].each do |key, value|
-  sentinel["host"] = key
-  sentinel["port"] = value
-  sentinel["password"] = config[:spass]
+  sentinel[:host] = key
+  sentinel[:port] = value
   sentinels << sentinel
+  sentinel = {}
 end
 
-redis = Redis.new(url: 'redis://mymaster', sentinels: sentinels, role: :master, password: config[:rpass])
+redis = Redis.new(url: 'redis://mymaster', sentinels: sentinels, role: :master, password: config[:rpass], sentinel_password: config[:spass])
 
 # 1 request every 2s
 # Frond End will have to check for code 403
