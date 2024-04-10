@@ -1,0 +1,16 @@
+# Add Custom-Request-For in dictionary file
+server ldapotp {
+    authorize {
+        update request {
+            Custom-Request-For := ldapotp
+        }
+        update control {
+            Auth-Type := Python3
+        }
+    }
+    authenticate {
+        Auth-Type Python3 {
+            python3
+        }
+    }
+}
