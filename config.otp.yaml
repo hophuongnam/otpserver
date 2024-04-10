@@ -1,0 +1,18 @@
+---
+domain: inside.fptcloud.com
+email_domain: fpt.com
+sentinels:
+  172.20.12.11: 26379
+  172.20.12.12: 26379
+  172.20.12.13: 26379
+  172.19.16.51: 26379
+  172.19.16.52: 26379
+  172.19.16.53: 26379
+# Sentinel password
+spass: secret_here
+# Redis password
+rpass: secret_here
+smtp:
+  address: 127.0.0.1
+  port: 25
+sender_address: noreply@fptcloud.com

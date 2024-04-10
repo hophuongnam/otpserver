@@ -1,0 +1,17 @@
+server {
+  listen 443 ssl http2;
+  server_name otp.inside.fptcloud.com;
+  server_tokens off; ## Don't show the nginx version number, a security best practice
+
+  access_log  /var/log/nginx/access.log;
+  error_log   /var/log/nginx/error.log;
+
+  location / {
+    proxy_pass http://localhost:4567;
+    proxy_buffering off;
+    proxy_set_header Host      $host;
+    # proxy_set_header X-Real-IP $remote_addr;
+    # see nginx.conf for $request_ip
+    proxy_set_header X-Real-IP $request_ip;
+  }
+}

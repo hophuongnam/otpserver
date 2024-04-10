@@ -1,0 +1,17 @@
+[libdefaults]
+        default_realm = INSIDE.FPTCLOUD.COM
+
+[realms]
+        INSIDE.FPTCLOUD.COM = {
+                admin_server = 172.20.5.4
+                kdc = 172.20.5.4
+                kdc = 172.20.5.5
+                default_domain = INSIDE.FPTCLOUD.COM
+        }
+
+[domain_realm]
+        .inside.fptcloud.com = INSIDE.FPTCLOUD.COM
+        inside.fptcloud.com = INSIDE.FPTCLOUD.COM
+
+[logging]
+        kdc = CONSOLE
